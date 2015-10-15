@@ -14,12 +14,11 @@ object problem050 {
   sumOfFibEven(1, 2, 0)                           //> res1: Int = 4613732
   
   // prob003
-  def getPrimeFactor(num: Long, startNum:Int, maxPrimeFactor:Int ): Int = {
-		if (num%startNum == 0) getPrimeFactor(num/startNum, startNum, startNum)
-		else if (num == 1) maxPrimeFactor
-		else getPrimeFactor(num, startNum+1, maxPrimeFactor)
+  def getPrimeFactor(num: Long, startNum:Int, maxPrimeFactor:Int ): Int = num match {
+  	case 1 => maxPrimeFactor
+  	case n if (n%startNum==0) => getPrimeFactor(num/startNum, startNum, startNum)
+  	case n => getPrimeFactor(num, startNum+1, maxPrimeFactor)
   }                                               //> getPrimeFactor: (num: Long, startNum: Int, maxPrimeFactor: Int)Int
-  
   getPrimeFactor(600851475143L, 2, 1)             //> res2: Int = 6857
   
   // prob004
@@ -27,9 +26,20 @@ object problem050 {
   	val str = number.toString
   	str.equals(str.reverse)
   }                                               //> isPalindrome: (number: Int)Boolean
-  
   (100 to 999).flatMap(x => (x to 999).map(y => x*y)).filter(isPalindrome).max
                                                   //> res3: Int = 906609
+  // prob005
+  def lcm(a: Long, b: Long): Long = {
+  	def gcd(a:Long, b:Long): Long = {
+  		if (b==0) a
+  		else gcd(b, a%b)
+  	}
+  	a * b / gcd(a,b)
+  }                                               //> lcm: (a: Long, b: Long)Long
+  (1L to 20L).reduce(lcm(_,_))                    //> res4: Long = 232792560
   
+	// prob006
+	math.pow((1 to 100).sum, 2).toLong - (1 to 100).map(math.pow(_, 2)).sum.toLong
+                                                  //> res5: Long = 25164150
  
 }
