@@ -22,4 +22,14 @@ object problem050 {
   
   getPrimeFactor(600851475143L, 2, 1)             //> res2: Int = 6857
   
+  // prob004
+  def isPalindrome(number: Int): Boolean = {
+  	val str = number.toString
+  	str.equals(str.reverse)
+  }                                               //> isPalindrome: (number: Int)Boolean
+  
+  (100 to 999).flatMap(x => (x to 999).map(y => x*y)).filter(isPalindrome).max
+                                                  //> res3: Int = 906609
+  
+ 
 }
