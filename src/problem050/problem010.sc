@@ -1,6 +1,6 @@
 package problem050
 
-object problem050 {
+object problem010 {
   // prob001
   (1 until 1000).filter(x => (x%3==0 || x%5==0)).sum
                                                   //> res0: Int = 233168
